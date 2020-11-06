@@ -1,18 +1,18 @@
 # ResponseToFile-Postman
 
-This project will help in writing the responses of a request from Postman
+This project will help in writing the responses of a request from Postman.
 
 This project is to be used with template from Postman.
 
 ### Steps to install the template
-1. Launch Postman Native App [Download Postman](https://getpostman.com/apps)
+1. Launch Postman Native App [Download Postman](https://www.postman.com/downloads/)
 2. Visit the following URL: https://documenter.getpostman.com/view/3407886/RWgp1fB5
 3. Click `► Run In Postman` and open with the native app
 
 The collection that was imported makes it easy for users who want to write the response of each request to a file.
 This can be extended to write anything for eg. meta information or value of variables being used.
 
-PR's are welcome.
+PRs are welcome.
 
 ----
 
@@ -21,7 +21,7 @@ This collection makes it easy for users who want to write the response of each r
 This can be extended to write anything for eg. meta information or value of variables being used.
 
 
-This project is using a powerful feature built in postman called as `pm.sendRequest`, the docs for which can be found here: https://www.getpostman.com/docs/v6/postman/scripts/postman_sandbox_api_reference
+This project is using a powerful feature built in postman called as `pm.sendRequest`, the docs for which can be found here: https://learning.postman.com/docs/postman/scripts/postman-sandbox-api-reference/#pmsendrequest
 
 
 ## Requirements
@@ -59,4 +59,14 @@ Then you can send that particular request / requests under a folder for which th
 You can also modify the **extension** of the file.
 
 **Example:**
-Incase you want to write CSV data to a file, all you need to do is change the `fileExtension` property in the `Tests` script to `csv`.
+In case you want to write CSV data to a file, all you need to do is change the `fileExtension` property in the `Tests` script to `csv`.
+
+
+## File Support
+You can modify the `opts` variable as per your need under the `Tests` tab of the collection, the following features are supported:
+
+1. If you want all the data to be written to a single file then you can modify the value of mode to appendFile instead of writeFile (More functions here: [Node FS](https://nodejs.org/api/fs.html#fs_fs_writefile_file_data_options_callback))
+
+2. If you want each response to be stored in a different file, then you can provide a `uniqueIdentifier` such as `Date.now()` or some environment variable as a counter, and it'll be used generate unique file names. You can also make the value of uniqueIdentifier as `true` and the server will internally append a unique number to every file name.
+
+3. You can provide options to the FS lib, e.g. `options: { encoding: 'base64' }`.
